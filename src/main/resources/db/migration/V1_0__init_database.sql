@@ -3,5 +3,3 @@ CREATE TABLE groovy_script (
 	script_name varchar(255) not null,
 	script_text varchar(255) not null
 );
-
-create sequence person_sequence start with 1 increment by 1;

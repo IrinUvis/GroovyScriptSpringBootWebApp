@@ -3,15 +3,15 @@ package karol.kowalski.groovyScriptHolder.groovyScript.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "groovy_script")
 public class GroovyScript {
 
     @Id
-    @GeneratedValue
+//    @SequenceGenerator(name = "groovy_script_generator", sequenceName = "groovy_script_sequence", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groovy_script_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String scriptName;
     private String scriptText;
