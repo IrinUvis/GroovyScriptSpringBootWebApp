@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>karol.kowalski</groupId>
-	<artifactId>groovyScriptHolder</artifactId>
+	<artifactId>groovy-script-holder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GroovyScriptHolder</name>
+	<name>groovy-script-holder</name>
 	<description>Spring Boot Simple Web Application</description>
 
 	<properties>
@@ -72,6 +72,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
