@@ -1,0 +1,1 @@
+INSERT into groovy_script (script_name, script_text) values ('add', '(arg0.toInteger() + arg1.toInteger()).toString()');

@@ -9,8 +9,6 @@ import javax.persistence.*;
 public class GroovyScript {
 
     @Id
-//    @SequenceGenerator(name = "groovy_script_generator", sequenceName = "groovy_script_sequence", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groovy_script_generator")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String scriptName;

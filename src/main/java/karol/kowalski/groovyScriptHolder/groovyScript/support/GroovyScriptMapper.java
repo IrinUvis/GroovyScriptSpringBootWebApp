@@ -22,7 +22,7 @@ public class GroovyScriptMapper {
         return groovyScript;
     }
 
-    public GroovyScriptResponse toGroovyScriptResponse(GroovyScript groovyScript) {
-        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText());
+    public GroovyScriptResponse toGroovyScriptResponse(GroovyScript groovyScript, String result) {
+        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText(), result);
     }
 }

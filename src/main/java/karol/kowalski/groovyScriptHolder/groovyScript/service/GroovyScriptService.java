@@ -7,8 +7,10 @@ import karol.kowalski.groovyScriptHolder.groovyScript.domain.GroovyScript;
 import karol.kowalski.groovyScriptHolder.groovyScript.repository.GroovyScriptRepository;
 import karol.kowalski.groovyScriptHolder.groovyScript.support.GroovyScriptExceptionSupplier;
 import karol.kowalski.groovyScriptHolder.groovyScript.support.GroovyScriptMapper;
+import karol.kowalski.groovyScriptHolder.groovyScript.support.GroovyScriptSolver;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,40 +19,54 @@ public class GroovyScriptService {
 
     private final GroovyScriptRepository groovyScriptRepository;
     private final GroovyScriptMapper groovyScriptMapper;
+    private final GroovyScriptSolver groovyScriptSolver;
 
-    public GroovyScriptService(GroovyScriptRepository groovyScriptRepository, GroovyScriptMapper groovyScriptMapper) {
+    public GroovyScriptService(GroovyScriptRepository groovyScriptRepository, GroovyScriptMapper groovyScriptMapper, GroovyScriptSolver groovyScriptSolver) {
         this.groovyScriptRepository = groovyScriptRepository;
         this.groovyScriptMapper = groovyScriptMapper;
+        this.groovyScriptSolver = groovyScriptSolver;
     }
 
     public GroovyScriptResponse create(GroovyScriptRequest groovyScriptRequest) {
         GroovyScript groovyScript = groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScriptRequest));
-        return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
+        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
     }
 
     public GroovyScriptResponse find(Long id) {
         GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
-        return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
+        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
     }
 
     public GroovyScriptResponse update(UpdateGroovyScriptRequest updateGroovyScriptRequest) {
         GroovyScript groovyScript = groovyScriptRepository.findById(updateGroovyScriptRequest.getId()).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(updateGroovyScriptRequest.getId()));
         groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScript, updateGroovyScriptRequest));
-        return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
+        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
     }
 
     public GroovyScriptResponse update(Long id, UpdateGroovyScriptRequest updateGroovyScriptRequest) {
         GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScript, updateGroovyScriptRequest));
-        return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
+        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
     }
 
     public List<GroovyScriptResponse> findAll() {
-        return groovyScriptRepository.findAll().stream().map(groovyScriptMapper::toGroovyScriptResponse).collect(Collectors.toList());
+        //return groovyScriptRepository.findAll().stream().map(groovyScriptMapper::toGroovyScriptResponse).collect(Collectors.toList());
+        List<GroovyScriptResponse> responses = new ArrayList<>();
+        List<GroovyScript> scripts = groovyScriptRepository.findAll();
+        for (GroovyScript script : scripts) {
+            responses.add(groovyScriptMapper.toGroovyScriptResponse(script, "No result"));
+        }
+        return responses;
     }
 
     public void delete(Long id) {
         GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         groovyScriptRepository.delete(groovyScript);
+    }
+
+    public GroovyScriptResponse solveScript(Long id, String[] args) {
+        GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
+        String result = groovyScriptSolver.solveScript(groovyScript, args);
+        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, result);
     }
 }
