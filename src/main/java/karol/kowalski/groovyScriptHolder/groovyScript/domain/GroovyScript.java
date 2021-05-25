@@ -5,6 +5,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 
+/**
+ * Representation of GroovyScript inside the database.
+ */
 @Entity(name = "groovy_script")
 public class GroovyScript {
 

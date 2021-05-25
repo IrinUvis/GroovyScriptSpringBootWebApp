@@ -1,5 +1,8 @@
 package karol.kowalski.groovyScriptHolder.groovyScript.api.response;
 
+/**
+ * Class representing GroovyScriptResponse that is returned after successful request handling.
+ */
 public class GroovyScriptResponse {
 
     private final Long id;

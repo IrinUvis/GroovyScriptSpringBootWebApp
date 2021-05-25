@@ -6,6 +6,9 @@ import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptR
 import karol.kowalski.groovyScriptHolder.groovyScript.domain.GroovyScript;
 import org.springframework.stereotype.Component;
 
+/**
+ * Mapper used for conversion between GroovyScript-Responses, Requests and GroovyScripts.
+ */
 @Component
 public class GroovyScriptMapper {
 

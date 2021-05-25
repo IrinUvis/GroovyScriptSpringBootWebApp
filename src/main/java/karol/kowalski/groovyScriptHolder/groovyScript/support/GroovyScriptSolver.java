@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Helper class with purpose of solving passed scripts with use of passed arguments.
+ */
 @Component
 public class GroovyScriptSolver {
 

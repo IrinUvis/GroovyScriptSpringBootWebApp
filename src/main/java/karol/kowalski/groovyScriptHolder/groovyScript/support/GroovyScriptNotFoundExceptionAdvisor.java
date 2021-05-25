@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Advisor used for returning informative response when the script with given id can't be found.
+ */
 @ControllerAdvice
 public class GroovyScriptNotFoundExceptionAdvisor {
 

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller providing all functionalities related to Groovy Scripts.
+ */
 @RestController
 @Api(tags = "GroovyScripts")
 @RequestMapping("/api/groovyScripts")

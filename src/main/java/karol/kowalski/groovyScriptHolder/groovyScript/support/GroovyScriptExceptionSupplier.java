@@ -5,6 +5,9 @@ import karol.kowalski.groovyScriptHolder.groovyScript.support.Exception.GroovySc
 
 import java.util.function.Supplier;
 
+/**
+ * Class returning suppliers for proper Exception handling.
+ */
 public class GroovyScriptExceptionSupplier {
 
     public static Supplier<GroovyScriptNotFoundException> groovyScriptNotFound(Long id) {

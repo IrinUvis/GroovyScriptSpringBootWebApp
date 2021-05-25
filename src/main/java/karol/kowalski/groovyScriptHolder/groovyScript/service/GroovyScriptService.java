@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Services called by GroovyScriptController.
+ */
 @Component
 public class GroovyScriptService {
 
@@ -38,12 +41,6 @@ public class GroovyScriptService {
 
     public GroovyScriptResponse update(UpdateGroovyScriptRequest updateGroovyScriptRequest) {
         GroovyScript groovyScript = groovyScriptRepository.findById(updateGroovyScriptRequest.getId()).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(updateGroovyScriptRequest.getId()));
-        groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScript, updateGroovyScriptRequest));
-        return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
-    }
-
-    public GroovyScriptResponse update(Long id, UpdateGroovyScriptRequest updateGroovyScriptRequest) {
-        GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScript, updateGroovyScriptRequest));
         return groovyScriptMapper.toGroovyScriptResponse(groovyScript, "No result");
     }
