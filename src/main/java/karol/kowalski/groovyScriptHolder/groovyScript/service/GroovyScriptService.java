@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class GroovyScriptService {
@@ -50,7 +49,6 @@ public class GroovyScriptService {
     }
 
     public List<GroovyScriptResponse> findAll() {
-        //return groovyScriptRepository.findAll().stream().map(groovyScriptMapper::toGroovyScriptResponse).collect(Collectors.toList());
         List<GroovyScriptResponse> responses = new ArrayList<>();
         List<GroovyScript> scripts = groovyScriptRepository.findAll();
         for (GroovyScript script : scripts) {

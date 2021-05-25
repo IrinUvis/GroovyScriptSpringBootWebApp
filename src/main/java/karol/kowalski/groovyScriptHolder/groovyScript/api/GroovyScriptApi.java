@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.GroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.UpdateGroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptResponse;
-import karol.kowalski.groovyScriptHolder.groovyScript.domain.GroovyScript;
 import karol.kowalski.groovyScriptHolder.groovyScript.service.GroovyScriptService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,49 +24,42 @@ public class GroovyScriptApi {
     }
 
     @PostMapping
-    @ApiOperation("Create Groovy Script")
+    @ApiOperation("Create Groovy Script and put in the database")
     public ResponseEntity<GroovyScriptResponse> create(@RequestBody GroovyScriptRequest groovyScriptRequest) {
         GroovyScriptResponse groovyScriptResponse = groovyScriptService.create(groovyScriptRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(groovyScriptResponse);
     }
 
     @GetMapping("/{id}")
-    @ApiOperation("Find Groovy Script")
+    @ApiOperation("Find Groovy Script with specified id")
     public ResponseEntity<GroovyScriptResponse> find(@PathVariable Long id) {
         GroovyScriptResponse groovyScriptResponse = groovyScriptService.find(id);
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
     }
 
     @PutMapping
-    @ApiOperation("Update Groovy Script")
+    @ApiOperation("Update Groovy Script and store the updated one in the database")
     public ResponseEntity<GroovyScriptResponse> update(@RequestBody UpdateGroovyScriptRequest updateGroovyScriptRequest) {
         GroovyScriptResponse groovyScriptResponse = groovyScriptService.update(updateGroovyScriptRequest);
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
     }
 
-//    @PutMapping("/{id}")
-//    @ApiOperation("Update Groovy Script")
-//    public ResponseEntity<GroovyScriptResponse> update(@PathVariable Long id, @RequestBody UpdateGroovyScriptRequest updateGroovyScriptRequest) {
-//        GroovyScriptResponse groovyScriptResponse = groovyScriptService.update(id, updateGroovyScriptRequest);
-//        return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
-//    }
-
     @GetMapping
-    @ApiOperation("Find all Groovy Scripts")
+    @ApiOperation("Find all Groovy Scripts in the database")
     public ResponseEntity<List<GroovyScriptResponse>> findAll() {
         List<GroovyScriptResponse> groovyScriptResponses = groovyScriptService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponses);
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation("Delete Groovy Script")
+    @ApiOperation("Delete Groovy Script with specified id")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         groovyScriptService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}")
-    @ApiOperation("Pass arguments to Groovy Script with id.")
+    @ApiOperation("Pass arguments to Groovy Script with id and get answer as a response")
     public ResponseEntity<GroovyScriptResponse> addArguments(@PathVariable Long id, @RequestParam String[] args) {
         GroovyScriptResponse groovyScriptResponse = groovyScriptService.solveScript(id, args);
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
