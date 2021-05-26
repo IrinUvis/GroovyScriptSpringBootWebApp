@@ -29,8 +29,10 @@ public class GroovyScriptApi {
 
     @PostMapping
     @ApiOperation("Create Groovy Script and put in the database")
-    public ResponseEntity<GroovyScriptResponse> create(@RequestBody GroovyScriptRequest groovyScriptRequest) {
-        GroovyScriptResponse groovyScriptResponse = groovyScriptService.create(groovyScriptRequest);
+    public ResponseEntity<GroovyScriptResponse> create(
+            @RequestBody GroovyScriptRequest groovyScriptRequest) {
+        GroovyScriptResponse groovyScriptResponse =
+                groovyScriptService.create(groovyScriptRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(groovyScriptResponse);
     }
 
@@ -43,15 +45,18 @@ public class GroovyScriptApi {
 
     @PutMapping
     @ApiOperation("Update Groovy Script and store the updated one in the database")
-    public ResponseEntity<GroovyScriptResponse> update(@RequestBody UpdateGroovyScriptRequest updateGroovyScriptRequest) {
-        GroovyScriptResponse groovyScriptResponse = groovyScriptService.update(updateGroovyScriptRequest);
+    public ResponseEntity<GroovyScriptResponse> update(
+            @RequestBody UpdateGroovyScriptRequest updateGroovyScriptRequest) {
+        GroovyScriptResponse groovyScriptResponse =
+                groovyScriptService.update(updateGroovyScriptRequest);
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
     }
 
     @GetMapping
     @ApiOperation("Find all Groovy Scripts in the database")
     public ResponseEntity<List<GroovyScriptResponse>> findAll() {
-        List<GroovyScriptResponse> groovyScriptResponses = groovyScriptService.findAll();
+        List<GroovyScriptResponse> groovyScriptResponses =
+                groovyScriptService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponses);
     }
 
@@ -64,8 +69,10 @@ public class GroovyScriptApi {
 
     @PutMapping("/{id}")
     @ApiOperation("Pass arguments to Groovy Script with id and get answer as a response")
-    public ResponseEntity<GroovyScriptWithAnswerResponse> addArguments(@PathVariable Long id, @RequestParam String[] args) {
-        GroovyScriptWithAnswerResponse groovyScriptWithAnswerResponse = groovyScriptService.solveScript(id, args);
+    public ResponseEntity<GroovyScriptWithAnswerResponse> addArguments(
+            @PathVariable Long id, @RequestParam String[] args) {
+        GroovyScriptWithAnswerResponse groovyScriptWithAnswerResponse =
+                groovyScriptService.solveScript(id, args);
         return ResponseEntity.status(HttpStatus.OK).body(groovyScriptWithAnswerResponse);
     }
 }

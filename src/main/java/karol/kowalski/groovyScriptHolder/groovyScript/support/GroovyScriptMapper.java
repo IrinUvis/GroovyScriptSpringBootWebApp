@@ -17,20 +17,26 @@ public class GroovyScriptMapper {
     }
 
     public GroovyScript toGroovyScript(GroovyScriptRequest groovyScriptRequest) {
-        return new GroovyScript(groovyScriptRequest.getScriptName(), groovyScriptRequest.getScriptText());
+        return new GroovyScript(groovyScriptRequest.getScriptName(),
+                groovyScriptRequest.getScriptText());
     }
 
-    public GroovyScript toGroovyScript(GroovyScript groovyScript, UpdateGroovyScriptRequest groovyScriptRequest) {
+    public GroovyScript toGroovyScript(GroovyScript groovyScript,
+                                       UpdateGroovyScriptRequest groovyScriptRequest) {
         groovyScript.setScriptName(groovyScriptRequest.getScriptName());
         groovyScript.setScriptText(groovyScriptRequest.getScriptText());
         return groovyScript;
     }
 
     public GroovyScriptResponse toGroovyScriptResponse(GroovyScript groovyScript) {
-        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText());
+        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(),
+                groovyScript.getScriptText());
     }
 
-    public GroovyScriptWithAnswerResponse toGroovyScriptWithAnswerResponse(GroovyScript groovyScript, String result) {
-        return new GroovyScriptWithAnswerResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText(), result);
+    public GroovyScriptWithAnswerResponse toGroovyScriptWithAnswerResponse(
+            GroovyScript groovyScript, String result) {
+        return new GroovyScriptWithAnswerResponse(
+                groovyScript.getId(), groovyScript.getScriptName(),
+                groovyScript.getScriptText(), result);
     }
 }

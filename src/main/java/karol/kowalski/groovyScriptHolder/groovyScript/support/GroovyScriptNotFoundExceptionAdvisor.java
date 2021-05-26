@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GroovyScriptNotFoundExceptionAdvisor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GroovyScriptNotFoundExceptionAdvisor.class);
+    private static final Logger LOG =
+            LoggerFactory.getLogger(GroovyScriptNotFoundExceptionAdvisor.class);
 
     @ExceptionHandler(GroovyScriptNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

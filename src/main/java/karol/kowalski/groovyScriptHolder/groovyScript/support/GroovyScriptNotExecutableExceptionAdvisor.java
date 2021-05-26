@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GroovyScriptNotExecutableExceptionAdvisor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GroovyScriptNotExecutableExceptionAdvisor.class);
+    private static final Logger LOG =
+            LoggerFactory.getLogger(GroovyScriptNotExecutableExceptionAdvisor.class);
 
     @ExceptionHandler(GroovyScriptNotExecutableException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorMessageResponse groovyScriptNotExecutable(GroovyScriptNotExecutableException exeception) {
-        LOG.error(exeception.getMessage(), exeception);
-        return new ErrorMessageResponse(exeception.getMessage());
+    public ErrorMessageResponse groovyScriptNotExecutable(GroovyScriptNotExecutableException exception) {
+        LOG.error(exception.getMessage(), exception);
+        return new ErrorMessageResponse(exception.getMessage());
     }
 
 }

@@ -24,25 +24,33 @@ public class GroovyScriptService {
     private final GroovyScriptMapper groovyScriptMapper;
     private final GroovyScriptSolver groovyScriptSolver;
 
-    public GroovyScriptService(GroovyScriptRepository groovyScriptRepository, GroovyScriptMapper groovyScriptMapper, GroovyScriptSolver groovyScriptSolver) {
+    public GroovyScriptService(GroovyScriptRepository groovyScriptRepository,
+                               GroovyScriptMapper groovyScriptMapper,
+                               GroovyScriptSolver groovyScriptSolver) {
         this.groovyScriptRepository = groovyScriptRepository;
         this.groovyScriptMapper = groovyScriptMapper;
         this.groovyScriptSolver = groovyScriptSolver;
     }
 
     public GroovyScriptResponse create(GroovyScriptRequest groovyScriptRequest) {
-        GroovyScript groovyScript = groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScriptRequest));
+        GroovyScript groovyScript = groovyScriptRepository.save(
+                groovyScriptMapper.toGroovyScript(groovyScriptRequest));
         return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
     }
 
     public GroovyScriptResponse find(Long id) {
-        GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
+        GroovyScript groovyScript = groovyScriptRepository.findById(id)
+                .orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
     }
 
     public GroovyScriptResponse update(UpdateGroovyScriptRequest updateGroovyScriptRequest) {
-        GroovyScript groovyScript = groovyScriptRepository.findById(updateGroovyScriptRequest.getId()).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(updateGroovyScriptRequest.getId()));
-        groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(groovyScript, updateGroovyScriptRequest));
+        GroovyScript groovyScript = groovyScriptRepository.findById(
+                updateGroovyScriptRequest.getId())
+                .orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(
+                        updateGroovyScriptRequest.getId()));
+        groovyScriptRepository.save(groovyScriptMapper.toGroovyScript(
+                groovyScript, updateGroovyScriptRequest));
         return groovyScriptMapper.toGroovyScriptResponse(groovyScript);
     }
 
@@ -56,12 +64,14 @@ public class GroovyScriptService {
     }
 
     public void delete(Long id) {
-        GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
+        GroovyScript groovyScript = groovyScriptRepository.findById(id)
+                .orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         groovyScriptRepository.delete(groovyScript);
     }
 
     public GroovyScriptWithAnswerResponse solveScript(Long id, String[] args) {
-        GroovyScript groovyScript = groovyScriptRepository.findById(id).orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
+        GroovyScript groovyScript = groovyScriptRepository.findById(id)
+                .orElseThrow(GroovyScriptExceptionSupplier.groovyScriptNotFound(id));
         String result = groovyScriptSolver.solveScript(groovyScript, args);
         return groovyScriptMapper.toGroovyScriptWithAnswerResponse(groovyScript, result);
     }
