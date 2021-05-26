@@ -23,7 +23,7 @@ all CRUD functionalities and REST api.</h3>
   * Use 'mvn clean package' (if you have maven installed)
   * If you don't have maven installed use 'mvnw.cmd clean package' (Windows) or 'mvnw clean package' (Linux/Mac)
   * Use 'docker build -t {image name of choice} .' ('.' stands for current directory)
-  * Use 'docker run -dp {hostport}:8080'
+  * Use 'docker run -dp {hostport}:8080 {image name of choice}'
 * Now the application is working with use of {hostport}.
   Just typing localhost:{hostport} inside your web browser won't wield satisfying results though.
   That's because implemented api is accessible under localhost:{hostport}/api/groovyScripts, 
