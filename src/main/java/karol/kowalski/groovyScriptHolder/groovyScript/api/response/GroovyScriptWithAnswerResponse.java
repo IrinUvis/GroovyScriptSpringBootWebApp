@@ -1,5 +1,9 @@
 package karol.kowalski.groovyScriptHolder.groovyScript.api.response;
 
+/**
+ * Class representing GroovyScript object and the result of script's execution as a response.
+ * It is returned after successful request handling.
+ */
 public class GroovyScriptWithAnswerResponse extends GroovyScriptResponse {
 
     private final String scriptResult;
