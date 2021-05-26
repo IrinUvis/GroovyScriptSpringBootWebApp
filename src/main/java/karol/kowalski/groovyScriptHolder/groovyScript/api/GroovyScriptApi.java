@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.GroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.UpdateGroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptResponse;
+import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptWithAnswerResponse;
 import karol.kowalski.groovyScriptHolder.groovyScript.service.GroovyScriptService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,8 +64,8 @@ public class GroovyScriptApi {
 
     @PutMapping("/{id}")
     @ApiOperation("Pass arguments to Groovy Script with id and get answer as a response")
-    public ResponseEntity<GroovyScriptResponse> addArguments(@PathVariable Long id, @RequestParam String[] args) {
-        GroovyScriptResponse groovyScriptResponse = groovyScriptService.solveScript(id, args);
-        return ResponseEntity.status(HttpStatus.OK).body(groovyScriptResponse);
+    public ResponseEntity<GroovyScriptWithAnswerResponse> addArguments(@PathVariable Long id, @RequestParam String[] args) {
+        GroovyScriptWithAnswerResponse groovyScriptWithAnswerResponse = groovyScriptService.solveScript(id, args);
+        return ResponseEntity.status(HttpStatus.OK).body(groovyScriptWithAnswerResponse);
     }
 }

@@ -3,6 +3,7 @@ package karol.kowalski.groovyScriptHolder.groovyScript.support;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.GroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.request.UpdateGroovyScriptRequest;
 import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptResponse;
+import karol.kowalski.groovyScriptHolder.groovyScript.api.response.GroovyScriptWithAnswerResponse;
 import karol.kowalski.groovyScriptHolder.groovyScript.domain.GroovyScript;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,11 @@ public class GroovyScriptMapper {
         return groovyScript;
     }
 
-    public GroovyScriptResponse toGroovyScriptResponse(GroovyScript groovyScript, String result) {
-        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText(), result);
+    public GroovyScriptResponse toGroovyScriptResponse(GroovyScript groovyScript) {
+        return new GroovyScriptResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText());
+    }
+
+    public GroovyScriptWithAnswerResponse toGroovyScriptWithAnswerResponse(GroovyScript groovyScript, String result) {
+        return new GroovyScriptWithAnswerResponse(groovyScript.getId(), groovyScript.getScriptName(), groovyScript.getScriptText(), result);
     }
 }
