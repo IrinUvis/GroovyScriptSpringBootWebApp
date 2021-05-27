@@ -33,4 +33,14 @@ all CRUD functionalities and REST api.</h3>
   Inside you will find all accessible RestController api methods with description 
   of what they are doing and how they should be used.
   
+### About the scripts
+* They are stored as Strings in the database
+* Subsequent arguments used in the script have to be called arg0, arg1 and so on.
+* There is no limit to how many arguments can be passed to the script.
+* Arguments are always passed as strings. For that reason if you want to use integer you need to include the conversion in the script.
+* The result of the script has to be string. After first start of the application there are two scripts present. Take them as example:
+  * The first one is a simple ["Hello " + arg0]. Because passed arguments arguments are strings by default and we want to perform concatenation in this script, no argument conversions are required. The result of this script is a string as well, so no result conversion is needed either.
+  * The second script is more interesting. It's supposed to perform an add mathematical operation. The script's text is [(arg0.toInteger() + arg1.toInteger()).toString()]. As you can see arguments' conversion to integer are required and because the result of the addition is a number we need to convert the result to String, because that's the type in which the result has to be.
+* If the script can't compile, not enough arguments are provided or type of return value isn't String, the server will respond with an error message.
+  
     
